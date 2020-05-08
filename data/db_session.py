@@ -19,7 +19,8 @@ def global_init():
         conn_str = os.environ['DATABASE_URL']  # сработает на Heroku
     else:
         # сработает локально
-        conn_str = f'sqlite:///mars_explorer.db?check_same_thread=False'
+        from config import LOCAL_DB  # сработает локально
+        conn_str = LOCAL_DB
 
     engine = sa.create_engine(conn_str, echo=False)
     __factory = orm.sessionmaker(bind=engine)

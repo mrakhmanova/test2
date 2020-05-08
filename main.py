@@ -30,7 +30,5 @@ if __name__ == '__main__':
 
     db_session.global_init()
     session = db_session.create_session()
-    if not session.query(User).first():
-        import fill_base
 
     app.run(host='0.0.0.0', port=os.environ.get("PORT", 5000))

@@ -9,7 +9,7 @@ SqlAlchemyBase = dec.declarative_base()
 __factory = None
 
 
-def global_init(db_file):
+def global_init():
     global __factory
 
     if __factory:
@@ -19,7 +19,7 @@ def global_init(db_file):
         conn_str = os.environ['DATABASE_URL']  # сработает на Heroku
     else:
         # сработает локально
-        conn_str = f'sqlite:///{db_file.strip()}?check_same_thread=False'
+        conn_str = f'sqlite:///mars_explorer.db?check_same_thread=False'
 
     engine = sa.create_engine(conn_str, echo=False)
     __factory = orm.sessionmaker(bind=engine)
